@@ -44,16 +44,22 @@ function App() {
       <button type="button" onClick={clearList}>Clear list</button>
 
       <ul>
-        {todos.map(function (todo) {
-          return (
-            <li key={todo}>
-              {todo}
-              <button type="button" onClick={function () { handleRemove(todo); }}>
-                Ta bort
-              </button>
-            </li>
-          );
-        })}
+        {todos
+          .filter(function (todo) {
+            return todo
+              .toLowerCase()
+              .includes(draft.toLowerCase());
+          })
+          .map(function (todo) {
+            return (
+              <li key={todo}>
+                {todo}
+                <button type="button" onClick={function () { handleRemove(todo); }}>
+                  Ta bort
+                </button>
+              </li>
+            );
+          })}
       </ul>
     </main>
   );

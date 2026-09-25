@@ -2,9 +2,9 @@
 
 1. I `App.jsx` under `ul` ligger `todos.map(function (todo) { })`.
 
-2. I UI blir varje element i todo listan en egen `li` tagg med sin todo text och en ta bort knapp. Varje element i todo listan körs genom funktionen och blir en ny JSX `li` tagg i en ny array, som ett löpande band.
+2. I UI blir varje element i todos listan en egen `li` tagg med sin todo text och en ta bort knapp. Varje element i todos listan körs genom funktionen och blir en ny JSX `li` tagg i en ny array, som ett löpande band.
 
-3. `map` behövs så att alla element i listan skrivs ut oberoende på hur stor eller liten listan är. Så att listan med `li` taggar kan växa och minska när man lägger till eller tar bort en todo. Alternativet är att man själv skapar en rad för varje sak i todo listan, men då är UI raderna inte dynamisk, alltså den kan inte växa eller minska.
+3. `map` behövs så att alla element i listan skrivs ut oberoende på hur stor eller liten listan är. Så att listan med `li` taggar kan växa och minska när man lägger till eller tar bort en todo. Alternativet är att man själv skapar en rad för varje sak i todos listan, men då är UI raderna inte dynamisk, alltså den kan inte växa eller minska.
 
 ## Varför är .filter en sil och inte en kniv?
 
@@ -21,3 +21,7 @@
 2. I UI syns det inte.
 
 3. Det är till för React att kunna unikt identifiera/spåra syskonen när listan ändras.
+
+## Sökfilter
+
+Sök filtrerar listan genom att se om ett todo element innehåller `draft` textsträngen, klarar en todo inte villkoret är den inte med i den nya array:en. Den muterar alltså inte todos state listan.
