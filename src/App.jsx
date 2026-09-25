@@ -37,7 +37,9 @@ function App() {
       <button type="button" onClick={clearList}>Clear list</button>
 
       <ul>
-        {todos.map(function (todo) { return <li key={todo}>{todo}</li>; })}
+        {todos.map(function (todo) {
+          return (<li key={todo}>{todo}</li>);
+        })}
       </ul>
     </main>
   );
