@@ -1,16 +1,23 @@
-# React + Vite
+## Varför är .map ett löpande band?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. I `App.jsx` under `ul` ligger `todos.map(function (todo) { })`.
 
-Currently, two official plugins are available:
+2. I UI blir varje element i todo listan en egen `li` tagg med sin todo text och en ta bort knapp. Varje element i todo listan körs genom funktionen och blir en ny JSX `li` tagg i en ny array, som ett löpande band.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+3. `map` behövs så att alla element i listan skrivs ut oberoende på hur stor eller liten listan är. Så att listan med `li` taggar kan växa och minska när man lägger till eller tar bort en todo. Alternativet är att man själv skapar en rad för varje sak i todo listan, men då är UI raderna inte dynamisk, alltså den kan inte växa eller minska.
 
-## React Compiler
+## Varför är .filter en sil och inte en kniv?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. I `App.jsx`, första raden i `handleRemove` funktionen.
 
-## Expanding the ESLint configuration
+2. Det todo elementet tas bort från listan. Den nya listan `filter` skapar används sen som argument för `setTodos` anropet, vilket säger till React att re-render, vilket kör `map` igen fast med den ny listan, vilket i UI uppdaterar listan utan det elementet.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. `filter` behövs så att bara de todo elementen som inte klarar villkoret stannar i den nya listan. `filter` är alltså mer som sil, man får en ny array, och inte en kniv då den inte muterar samma array.
+
+## Vad gör key — och vad är den INTE?
+
+1. I `App.jsx`, inuti `map` funktion på `li` taggarna sitter `key` attributet.
+
+2. I UI syns det inte.
+
+3. Det är till för React att kunna unikt identifiera/spåra syskonen när listan ändras.
